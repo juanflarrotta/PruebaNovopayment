@@ -17,7 +17,7 @@ export async function getServerSideProps() {
   try {
     const res = await fetch(urls.apiMenu)
     data = await res.json()
-  } catch {
+  } catch (error) {
     console.log('Menu fetching error');
     console.log(error);
   }
