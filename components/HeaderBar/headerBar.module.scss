@@ -1,0 +1,26 @@
+@import "../../styles/variables.scss";
+
+.header {
+    &__bar {
+        background-color: $blue;
+        display: flex;
+        justify-content: center;
+        padding: 10px;
+        position: relative;
+    }
+
+    &__logo {
+        color: $white;
+        font-family: "gotham-bold";
+        font-size: 20px;
+    }
+}
+
+@media (min-width: $mobile) {
+    .header {
+        &__bar {
+            justify-content: space-between;
+            padding: 18px 30px;
+        }
+    }
+}

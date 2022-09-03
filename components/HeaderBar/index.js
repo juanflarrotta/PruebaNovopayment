@@ -3,17 +3,16 @@ import Icon from "../Icon";
 
 import styles from "./headerBar.module.scss"
 
-export default function HeaderBar(params) {
-
-    const { className } = params;
+export default function HeaderBar() {
 
     return (
-        <div className={className}>
+        <div className={styles.header__bar}>
             <Link href='/'>
                 <a>
                     <Icon icon="logo" className={styles.header__logo} />
                 </a>
             </Link>
+
         </div>
     )
 }

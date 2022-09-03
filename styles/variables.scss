@@ -1,1 +1,17 @@
+@font-face {
+    font-family: 'gotham-bold';
+    src: url(../public/fonts/gotham-bold.otf) format('opentype');
+}
+
+@font-face {
+    font-family: 'gotham-light';
+    src: url(../public/fonts/gotham-light.otf) format('opentype');
+}
+
 $grey: #e5e5e5;
+$blue: #1500a1;
+$blue-light: #00dcc9;
+$white: #fff;
+$black: #000;
+
+$mobile: 768px;
