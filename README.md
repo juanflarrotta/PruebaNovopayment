@@ -1,34 +1,105 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## Introducción
 
-## Getting Started
+Este proyecto es una propuesta para la `Prueba técnica Web Developer NovoPayment`, se realizó con `next` js un framework construido sobre `React` que nos ayuda a instalar las dependencias que necesitamos para crear la aplicación en React.
 
-First, run the development server:
+La aplicación se creó con base al diseño entregado y se realizó una propuesta del diseño mobile donde encontramos un botón hamburguesa que despliega el menú, y los demás componentes se ajustan para su mejor visualización e interacción en pantallas pequeñas.
+
+## Como correr el proyecto
+
+Para `correr` el proyecto en desarrollo:
 
 ```bash
 npm run dev
-# or
-yarn dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Para correr el proyecto para producción primero ejecutamos el `build`
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+```bash
+npm run build
+```
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+Después ejecutamos el `start`
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+```bash
+npm run start
+```
 
-## Learn More
+Abrimos [http://localhost:3000](http://localhost:3000) en el navegador para ver el resultado.
 
-To learn more about Next.js, take a look at the following resources:
+## Arquitectura
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### HTML
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+En la estructura `HTML` se utilizaron etiquetas semánticas para poder adquirir todas la propiedad que por defecto tienes dichas etiquetas, como lo es la accesibilidad y navegación por teclado para personas con alguna discapacidad.
+También se agregaron los `meta` tags que nos ayuda a un mejor renderizado de nuestra aplicación.
 
-## Deploy on Vercel
+### CSS
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Para los estilos se utilizó un pre-procesador llamado `SASS` que nos ayuda a utilizar variables, mixin, funciones para que nuestro código sea más ordenado, escalable y mantenible.
+Se utilizó un sass para cada componente ya que next nos ayuda a independizar cada componente con un style.module.scss y así tener un `scope` de cada uno.
+Los estilos también se utilizaron para realizar las animaciones en cada cambio de estado de los componentes cuando el usuario interactúa con la aplicación.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+La animación del menú en pantallas inferiores a 768 píxeles, se realiza con una propiedad nativa de css que es `transform: translate(0,0)`, esto nos ayuda a que la experiencia de usuario sea más interactiva.
+
+### JS/React
+
+Se dividió el proyecto en componentes que se encuentran en la carpeta `components` estas contienen el .js conde está alojado cada componente con sus eventos, lógica y estados para cambiar controladamente los componentes, en el .scss se encuentran los estilos para ese componente.
+
+Con nextJs podemos encontrar en la carpeta pages todas las páginas o rutas que existen en nuestra aplicación, en la carpeta api podemos encontrar los endPoint los cuales tienen un handler que podemos consumir, en este caso podemos consumir el servicio para armar el menu; tambien podemos encontrar el index.js principal donde hace el llamado de los componentes que se van a renderizar, también hay un complex.js el cual si vamos a la ruta `http://localhost:3000/complex` se renderiza la misma página consumiendo otro api llamado complex, (Complex se hizo para poder alterar el servicio y visualizar la lógica de llamado y renderizado del menú).
+
+Se utilizaron `hooks` para realizar nuestros cambios de estados y así alterar los componentes con una buena reactividad.
+
+### Carpetas
+
+En la carpeta `pages/api` se encuentra un archivo `menu.js` donde está nuestro api que vamos a consumir para armar el menú.
+En la carpeta `utils` se encuentran dos archivos el primero `constants` donde se encuentran todas nuestras variables globales para poderlas utilizar en toda la aplicación. y en `index` encontramos las funciones que vamos a utilizar.
+En la carpeta `styles` se encuentran los estilos globales y las variables que utilizamos en todos los componentes.
+
+### Renderizado del menu
+
+Para renderizar el menú, se realizó una nueva estructura de datos para poder renderizar mejor los submenús recurrentes; la función `sortMenuList()` es recurrente y realiza un bucle para armar la nueva estructura de datos.
+
+la nueva estructura de datos es la siguiente: 
+
+```bash
+	"data": [
+		{
+			"name": "",
+			"child": [
+				{
+					"name": "",
+					"child": []
+				},
+				{
+					"name": "",
+					"child": []
+				}
+			]
+		},
+		{
+			"name": "",
+			"child": []
+		},
+		{
+			"name": "",
+			"child": []
+		}
+	]
+```
+Con esta estructura de datos podemos realizar el renderizado de los submenús a través del método `map()` con una función recurrente que en este caso es `renderSub()`;
+
+En la data consumida del API podemos observar que las key de cada elemento son string con caracteres especiales; por ende para poder renderizar el texto correcto se crea un objeto `texts` en el archivo `constants.js` donde cada key tiene un valor; entonces cuando consumimos ese key retornamos el valor del key en el objeto texts.
+
+## Git flow
+
+En el proyecto para poder trabajar en el repositorio se utilizó la metodología de `git flow`.
+
+Hay una rama llamada `main`, la cual es la rama de producción; también hay una rama llamada `develop`, la cual es la rama donde se sacan las ramas cuando se requiere un nuevo feature.
+
+Cuando se crea una nueva rama de `develop` y se termina el desarrollo se debe hacer el merge a develop y después actualizar `main` con develop, así tendremos un flujo para poder trabajar varias personas en el mismo proyecto.
+
+## Unit test
+
+Por falta de tiempo no se alcanza a realizar ninguna prueba unitaria, pero con next se puede utilizar el marco de prueba o librería `jest`, la cual se pueden probar los estados del los componentes después de renderizarlo, también se puede comprobar todos los criterios de aceptación e incluso poder hacer end2end testing que nos ayuda a probar la aplicación haciendo una simulación del renderizado del navegador.
+
+
