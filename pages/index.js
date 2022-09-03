@@ -13,8 +13,13 @@ export default function Home(props) {
 }
 
 export async function getServerSideProps() {
-  const res = await fetch(urls.apiMenu)
-  const data = await res.json()
-
+  let data = null;
+  try {
+    const res = await fetch(urls.apiMenu)
+    data = await res.json()
+  } catch {
+    console.log('Menu fetching error');
+    console.log(error);
+  }
   return { props: { data } }
 }
