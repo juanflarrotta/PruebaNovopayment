@@ -18,6 +18,8 @@ export const texts = {
     enterprises: 'Empresas',
 }
 
+const base = "http://localhost:3000";
 export const urls = {
-    apiMenu: 'http://localhost:3000/api/menu',
-}
+    apiMenu: `${base}/api/menu`,
+    complex: `${base}/api/complex`,
+};
