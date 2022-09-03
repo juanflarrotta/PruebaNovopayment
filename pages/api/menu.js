@@ -11,12 +11,7 @@ const dataMenu = {
       ],
       "support": [
         {
-          "lock": [
-            {
-              "lock": [],
-              "change_pass": []
-            }
-          ],
+          "lock": [],
           "change_pass": []
         }
       ],
