@@ -1,0 +1,61 @@
+@import "../../styles/variables.scss";
+
+.menu {
+    transition: 0.25s all;
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    background-color: $blue;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    transform: translate(-100%, 0);
+
+    &__active {
+        transform: translate(0, 0);
+    }
+
+    &__list {
+        width: 100%;
+        height: 100%;
+        padding: 40px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        gap: 30px;
+    }
+
+    &__item {
+        font-family: "gotham-bold";
+        font-size: 30px;
+        color: $white;
+    }
+}
+
+@media (min-width: $mobile) {
+    .menu {
+        position: inherit;
+        height: auto;
+        background-color: $white;
+        display: flex;
+        transform: inherit;
+
+        &__list {
+            padding: 0 40px;
+            flex-direction: row;
+            justify-content: left;
+            gap: 20px;
+        }
+
+        &__item {
+            color: $black;
+            font-size: 16px;
+            font-family: "gotham-light";
+            height: 50px;
+            display: flex;
+            align-items: center;
+        }
+    }
+}
