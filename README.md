@@ -55,7 +55,9 @@ En la carpeta `styles` se encuentran los estilos globales y las variables que ut
 
 ### Renderizado del menu
 
-Para renderizar el menú, se realizó una nueva estructura de datos para poder renderizar mejor los submenús recurrentes; la nueva estructura de datos es la siguiente: 
+Para renderizar el menú, se realizó una nueva estructura de datos para poder renderizar mejor los submenús recurrentes; la función sortMenuList() es recurrente y realiza un bucle para armar la nueva estructura de datos.
+
+la nueva estructura de datos es la siguiente: 
 
 ```bash
 	"data": [
@@ -82,6 +84,9 @@ Para renderizar el menú, se realizó una nueva estructura de datos para poder r
 		}
 	]
 ```
+Con esta estructura de datos podemos realizar el renderizado de los submenús a través del método `map()` con una función recurrente que en este caso es `renderSub()`;
+
+En la data consumida del API podemos observar que las key de cada elemento son string con caracteres especiales; por ende para poder renderizar el texto correcto se crea una objeto `texts` en el archivo `constants.js` donde cada key tiene un valor; entonces cuando consumimos ese key retornamos el valor del key en el objeto texts.
 
 
 
