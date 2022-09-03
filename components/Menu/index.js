@@ -27,6 +27,27 @@ export default function Menu(props) {
     };
     organizeData(lista);
 
+    function renderList(params) {
+        if (params.length > 0) {
+            return (
+                <ul className={styles.menu__list__second}>
+                    {params.map((item) => {
+                        return (
+                            <li className={styles.menu__item__second} key={item.name}>
+                                <Link href="/">
+                                    <a>
+                                        {texts[item.name]}
+                                    </a>
+                                </Link>
+                                {renderList(item.child)}
+                            </li>
+                        )
+                    })}
+                </ul>
+            )
+        }
+    }
+
     const items = menuItems.map((item) => {
         return (
             <li className={styles.menu__item} key={item.name}>
@@ -35,8 +56,7 @@ export default function Menu(props) {
                         {texts[item.name]}
                     </a>
                 </Link>
-
-
+                {renderList(item.child)}
             </li>
         )
     })
