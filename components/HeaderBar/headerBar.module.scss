@@ -1,0 +1,73 @@
+@import "../../styles/variables.scss";
+
+.header {
+    &__bar {
+        background-color: $blue;
+        display: flex;
+        justify-content: center;
+        padding: 10px;
+        position: relative;
+    }
+
+    &__btn {
+        border: 0;
+        background-color: transparent;
+        position: absolute;
+        left: 10px;
+        top: 50%;
+        transform: translate(0px, -50%);
+        z-index: 2;
+    }
+
+    &__icon {
+        position: absolute;
+        right: 10px;
+        top: 50%;
+        transform: translate(0px, -50%);
+        border: 0;
+        background-color: transparent;
+        color: $white;
+
+        span {
+            font-family: "gotham-bold";
+        }
+
+        &__desktop {
+            position: inherit;
+            gap: 20px;
+            top: initial;
+            transform: inherit;
+            align-items: center;
+            display: none;
+        }
+    }
+
+    &__logo {
+        color: $white;
+        font-family: "gotham-bold";
+        font-size: 20px;
+    }
+}
+
+@media (min-width: $mobile) {
+    .header {
+        &__bar {
+            justify-content: space-between;
+            padding: 18px 30px;
+        }
+
+        &__btn {
+            display: none;
+        }
+
+        &__icon {
+            &__mobile {
+                display: none;
+            }
+
+            &__desktop {
+                display: flex;
+            }
+        }
+    }
+}
