@@ -1,71 +1,55 @@
 import Link from "next/link";
+import PropTypes from "prop-types";
+
 import { texts } from "../../utils/constants";
-import styles from "./menu.module.scss"
+import { sortMenuList, arrayHasElements } from "../../utils";
+import styles from "./menu.module.scss";
 
 export default function Menu(props) {
+    const { isActive, list } = props;
+    const menuItems = list.map((listItem) => sortMenuList(listItem));
 
-    const { active, data } = props;
-    const { lista } = data;
-    let menuItems = [];
-
-    function organizeData(params) {
-        const mock = [];
-        params.map((item) => {
-            for (const text in item) {
-                const newObje = {
-                    name: text,
-                    child: []
-                }
-                if (item[text].length > 0) {
-                    newObje.child = organizeData(item[text]);
-                }
-                mock.push(newObje);
-            }
-        });
-        menuItems = [...mock];
-        return [...mock]
-    };
-    organizeData(lista);
-
-    function renderList(params) {
-        if (params.length > 0) {
+    function renderSub(subitems) {
+        if (arrayHasElements(subitems)) {
             return (
                 <ul className={styles.menu__list__second}>
-                    {params.map((item) => {
+                    {subitems.map((item) => {
                         return (
-                            <li className={styles.menu__item__second} key={item.name}>
-                                <Link href="/">
-                                    <a>
-                                        {texts[item.name]}
-                                    </a>
-                                </Link>
-                                {renderList(item.child)}
+                            <li className={styles.menu__item__second} key={`submenu-${item.name}`}>
+                                <Link href="/">{texts[item.name]}</Link>
+                                {renderSub(item.child)}
                             </li>
-                        )
+                        );
                     })}
                 </ul>
-            )
+            );
         }
     }
 
-    const items = menuItems.map((item) => {
-        return (
-            <li className={styles.menu__item} key={item.name}>
-                <Link href="/">
-                    <a>
-                        {texts[item.name]}
-                    </a>
-                </Link>
-                {renderList(item.child)}
-            </li>
-        )
-    })
-
     return (
-        <nav className={`${styles.menu} ${active ? styles.menu__active : ''}`}>
-            <ul className={styles.menu__list}>
-                {items}
-            </ul>
-        </nav>
-    )
+        !!list && (
+            <nav className={`${styles.menu} ${isActive ? styles.menu__active : ""}`}>
+                {arrayHasElements(menuItems) &&
+                    menuItems.map((items) => {
+                        return (
+                            <ul className={styles.menu__list} key={`menu-${items}`}>
+                                {items.map((item) => {
+                                    return (
+                                        <li className={styles.menu__item} key={item.name}>
+                                            <Link href="/">{texts[item.name]}</Link>
+                                            {!!item.child && renderSub(item.child)}
+                                        </li>
+                                    );
+                                })}
+                            </ul>
+                        );
+                    })}
+            </nav>
+        )
+    );
 }
+
+Menu.propTypes = {
+    list: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
+    isActive: PropTypes.bool,
+};
