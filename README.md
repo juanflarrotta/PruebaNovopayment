@@ -57,7 +57,7 @@ En la carpeta `styles` se encuentran los estilos globales y las variables que ut
 
 ### Renderizado del menu
 
-Para renderizar el menú, se realizó una nueva estructura de datos para poder renderizar mejor los submenús recurrentes; la función sortMenuList() es recurrente y realiza un bucle para armar la nueva estructura de datos.
+Para renderizar el menú, se realizó una nueva estructura de datos para poder renderizar mejor los submenús recurrentes; la función `sortMenuList()` es recurrente y realiza un bucle para armar la nueva estructura de datos.
 
 la nueva estructura de datos es la siguiente: 
 
@@ -88,7 +88,7 @@ la nueva estructura de datos es la siguiente:
 ```
 Con esta estructura de datos podemos realizar el renderizado de los submenús a través del método `map()` con una función recurrente que en este caso es `renderSub()`;
 
-En la data consumida del API podemos observar que las key de cada elemento son string con caracteres especiales; por ende para poder renderizar el texto correcto se crea una objeto `texts` en el archivo `constants.js` donde cada key tiene un valor; entonces cuando consumimos ese key retornamos el valor del key en el objeto texts.
+En la data consumida del API podemos observar que las key de cada elemento son string con caracteres especiales; por ende para poder renderizar el texto correcto se crea un objeto `texts` en el archivo `constants.js` donde cada key tiene un valor; entonces cuando consumimos ese key retornamos el valor del key en el objeto texts.
 
 ## Git flow
 
@@ -98,6 +98,8 @@ Hay una rama llamada `main`, la cual es la rama de producción; también hay una
 
 Cuando se crea una nueva rama de `develop` y se termina el desarrollo se debe hacer el merge a develop y después actualizar `main` con develop, así tendremos un flujo para poder trabajar varias personas en el mismo proyecto.
 
+## Unit test
 
+Por falta de tiempo no se alcanza a realizar ninguna prueba unitaria, pero con next se puede utilizar el marco de prueba o librería `jest`, la cual se pueden probar los estados del los componentes después de renderizarlo, también se puede comprobar todos los criterios de aceptación e incluso poder hacer end2end testing que nos ayuda a probar la aplicación haciendo una simulación del renderizado del navegador.
 
 
