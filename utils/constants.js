@@ -17,3 +17,7 @@ export const texts = {
     change_pass: 'Cambio de contraseña',
     enterprises: 'Empresas',
 }
+
+export const urls = {
+    apiMenu: 'http://localhost:3000/api/menu',
+}

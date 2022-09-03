@@ -25,12 +25,17 @@
         align-items: center;
         text-align: center;
         gap: 30px;
+
+        &__second {
+            display: none;
+        }
     }
 
     &__item {
         font-family: "gotham-bold";
         font-size: 30px;
         color: $white;
+
     }
 }
 
@@ -47,6 +52,11 @@
             flex-direction: row;
             justify-content: left;
             gap: 20px;
+
+            &__second {
+                position: absolute;
+                top: 100%;
+            }
         }
 
         &__item {
@@ -56,6 +66,22 @@
             height: 50px;
             display: flex;
             align-items: center;
+            position: relative;
+
+            &__second {
+                &:hover {
+                    &>ul {
+                        display: block;
+                    }
+                }
+            }
+
+            &:hover {
+                &>ul {
+                    display: block;
+                }
+            }
+
         }
     }
 }
