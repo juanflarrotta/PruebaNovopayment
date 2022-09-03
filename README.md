@@ -39,6 +39,8 @@ Para los estilos se utilizó un pre-procesador llamado `SASS` que nos ayuda a ut
 Se utilizó un sass para cada componente ya que next nos ayuda a independizar cada componente con un style.module.scss y así tener un `scope` de cada uno.
 Los estilos también se utilizaron para realizar las animaciones en cada cambio de estado de los componentes cuando el usuario interactúa con la aplicación.
 
+La animación del menú en pantallas inferiores a 768 píxeles, se realiza con una propiedad nativa de css que es `transform: translate(0,0)`, esto nos ayuda a que la experiencia de usuario sea más interactiva.
+
 ### JS/React
 
 Se dividió el proyecto en componentes que se encuentran en la carpeta `components` estas contienen el .js conde está alojado cada componente con sus eventos, lógica y estados para cambiar controladamente los componentes, en el .scss se encuentran los estilos para ese componente.
@@ -88,6 +90,13 @@ Con esta estructura de datos podemos realizar el renderizado de los submenús a 
 
 En la data consumida del API podemos observar que las key de cada elemento son string con caracteres especiales; por ende para poder renderizar el texto correcto se crea una objeto `texts` en el archivo `constants.js` donde cada key tiene un valor; entonces cuando consumimos ese key retornamos el valor del key en el objeto texts.
 
+## Git flow
+
+En el proyecto para poder trabajar en el repositorio se utilizó la metodología de `git flow`.
+
+Hay una rama llamada `main`, la cual es la rama de producción; también hay una rama llamada `develop`, la cual es la rama donde se sacan las ramas cuando se requiere un nuevo feature.
+
+Cuando se crea una nueva rama de `develop` y se termina el desarrollo se debe hacer el merge a develop y después actualizar `main` con develop, así tendremos un flujo para poder trabajar varias personas en el mismo proyecto.
 
 
 
