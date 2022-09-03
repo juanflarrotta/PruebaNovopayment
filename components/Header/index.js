@@ -1,12 +1,16 @@
 import { useState } from "react"
-import HeaderBar from "../HeaderBar"
+
 import styles from "./header.module.scss"
+
+import Menu from "../Menu";
+import HeaderBar from "../HeaderBar"
 
 export default function Header() {
     const [menu, setMenu] = useState(false);
     return (
         <header className={styles.header}>
-            <HeaderBar state={menu} />
+            <HeaderBar menu={menu} setMenu={setMenu} />
+            <Menu active={menu} />
         </header>
     )
 }

@@ -8,16 +8,14 @@ import Icon from "../Icon";
 import { useState } from "react";
 
 export default function HeaderBar(props) {
-    const { state } = props;
-
-    const [active, setActive] = useState(false);
+    const { menu, setMenu } = props;
 
     return (
         <div className={styles.header__bar}>
             <Btn
                 className={styles.header__btn}
-                fontIcon={active ? <FaTimes size={20} color="white" /> : <FaGripLines size={20} color="white" />}
-                clickHandler={() => { setActive(!active) }}
+                fontIcon={menu ? <FaTimes size={20} color="white" /> : <FaGripLines size={20} color="white" />}
+                clickHandler={() => { setMenu(!menu) }}
             />
             <Link href='/'>
                 <a>
