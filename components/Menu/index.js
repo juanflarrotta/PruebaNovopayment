@@ -51,4 +51,5 @@ export default function Menu(props) {
 
 Menu.propTypes = {
     list: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
+    isActive: PropTypes.bool,
 };
