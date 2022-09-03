@@ -5,7 +5,6 @@ import { icons } from '../../utils/constants';
 import Link from "next/link";
 import Btn from "../Btn";
 import Icon from "../Icon";
-import { useState } from "react";
 
 export default function HeaderBar(props) {
     const { menu, setMenu } = props;
