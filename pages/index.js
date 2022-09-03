@@ -3,9 +3,10 @@ import Header from "../components/Header";
 import { urls } from "../utils/constants";
 
 export default function Home(props) {
+  const { data } = props;
   return (
     <>
-      <Header />
+      <Header data={data} />
       <Footer />
     </>
   )
